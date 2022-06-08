@@ -25,12 +25,19 @@ namespace Helloworld
             Console.WriteLine(number);
             Console.WriteLine("Hello World");
             Console.WriteLine("{0} {1}", byte.MinValue, byte.MaxValue);
-*/
+
             Exercises exercises = new Exercises();
-           // exercises.ValidateInput();
-           // exercises.DisplayMax(5,6);
-           // exercises.ImageTypeClassifier(400,300);
+            exercises.ValidateInput();
+            exercises.DisplayMax(5,6);
+            exercises.ImageTypeClassifier(400,300);
             exercises.SpeedCamera();
+            
+            */
+            ControlFlowExercises cfe = new ControlFlowExercises();
+            //cfe.DivisibleByThree();
+            //cfe.AddEnteredNumbers();
+            //cfe.CalculateFactorial();
+            cfe.FindMaxNumber();
         }
     }
 }
