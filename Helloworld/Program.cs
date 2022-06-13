@@ -1,9 +1,8 @@
 ﻿
 using System;
-using Helloworld.Math;
 
 
-namespace Helloworld
+namespace UITestProject.Tests
 {
     public class Program
     {
@@ -32,12 +31,14 @@ namespace Helloworld
             exercises.ImageTypeClassifier(400,300);
             exercises.SpeedCamera();
             
-            */
+            
             ControlFlowExercises cfe = new ControlFlowExercises();
             //cfe.DivisibleByThree();
             //cfe.AddEnteredNumbers();
             //cfe.CalculateFactorial();
             cfe.FindMaxNumber();
+            */
+            
         }
     }
 }

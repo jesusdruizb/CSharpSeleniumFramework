@@ -17,6 +17,13 @@ namespace UITestProject.Tests
         public string BrowserType { get; set; }
         
         [SetUp]
+        public void ChromeDriverSetup()
+        {
+            //new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+            new DriverManager().SetUpDriver(new ChromeConfig());
+            WebDriver = new ChromeDriver();
+        }
+        /*
         public void ReadBrowserType()
         {
             BrowserType = TestContext.Parameters.Get("browser", "");
@@ -33,12 +40,7 @@ namespace UITestProject.Tests
                     break;
             }
         }
-        
-        public void ChromeDriverSetup()
-        {
-            new DriverManager().SetUpDriver(new ChromeConfig(),VersionResolveStrategy.MatchingBrowser);
-            WebDriver = new ChromeDriver();
-        }
+        */
         
         public void FirefoxDriverSetup()
         {
