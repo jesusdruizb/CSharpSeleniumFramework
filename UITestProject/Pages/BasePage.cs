@@ -7,15 +7,20 @@ namespace UITestProject.Tests.Pages
 {
     public class BasePage
     {
-        //
+        //Attributes
         private IWebDriver _WebDriver;
         //Methods
 
-        public BasePage(IWebDriver WebDriver)
+        public BasePage(IWebDriver webDriver)
         {
-            this._WebDriver = WebDriver;
+            this._WebDriver = webDriver;
         }
-        
+
+        public void NavigateTo(string url)
+        {
+            _WebDriver.Navigate().GoToUrl(url);
+        }
+
         public IWebElement FindElementByLocator(By elementLocator)
         {
             IWebElement foundElement = null;
