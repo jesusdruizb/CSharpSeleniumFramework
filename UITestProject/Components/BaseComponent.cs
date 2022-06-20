@@ -1,56 +1,51 @@
 using System;
 using OpenQA.Selenium;
-using UITestProject.Tests.Constants;
+using OpenQA.Selenium.Support.UI;
+using UITestProject.Interfaces;
 
 namespace UITestProject.Components
 {
-    public class BaseComponent
+    public class BaseComponent: IWebComponent
     {
-        protected IWebDriver _webDriver { get; }
+        protected IWebDriver webDriver { get; }
         protected By byLocator { get;}
+
+        protected WebDriverWait explicitWait;
         
-        public BaseComponent(IWebDriver webDriver, By locator)
+        public BaseComponent(IWebDriver webDriver, By locator, WebDriverWait explicitWait)
         {
-            this._webDriver = webDriver;
+            this.webDriver = webDriver;
             this.byLocator = locator;
-            /*
-            switch (byType)
-            {
-                case ByType.Name:
-                    this.byLocator = By.Name(locator);
-                    break;
-                case ByType.TagName:
-                    this.byLocator = By.TagName(locator);
-                    break;
-                case ByType.Id:
-                    this.byLocator = By.Id(locator);
-                    break;
-                case ByType.ClassName:
-                    this.byLocator = By.ClassName(locator);
-                    break;
-                case ByType.Xpath:
-                    this.byLocator = By.XPath(locator);
-                    break;
-                case ByType.CssSelector:
-                    this.byLocator = By.CssSelector(locator);
-                    break;
-                case ByType.LinkText:
-                    this.byLocator = By.LinkText(locator);
-                    break;
-                case ByType.PartialLinkText:
-                    this.byLocator = By.PartialLinkText(locator);
-                    break;
-                default:
-                    Console.WriteLine("Unknown Locator Type");
-                    break;
-            }*/
-
+            this.explicitWait = explicitWait;
         }
 
-        protected BaseComponent()
+        public BaseComponent()
         {
         }
         
+        public bool IsComponentVisible()
+        {
+           return webDriver.FindElement(byLocator).Displayed;
+        }
 
+        public virtual bool IsComponentVisibleAfterWait(int seconds, WebDriverWait wait)
+        {
+            //explicitWait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(seconds));
+            return explicitWait.Until(ExpectedConditions.ElementIsVisible(byLocator)) != null;
+        }
+        
+        public IWebElement WebComponent(By byLocator)
+        {
+            IWebElement element = null;
+            try
+            {
+                element = webDriver.FindElement(byLocator);
+            }
+            catch (ElementNotVisibleException e)
+            {
+                element = explicitWait.Until(ExpectedConditions.ElementIsVisible(byLocator));
+            }
+            return element;
+        }
     }
 }

@@ -2,25 +2,29 @@ using System;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using UITestProject.Interfaces;
 
 namespace UITestProject.Tests.Pages
 {
-    public class BasePage
+    public class BasePage: IWebPage
     {
         //Attributes
-        private IWebDriver _WebDriver;
+        IWebDriver _WebDriver;
+
+        protected WebDriverWait _Wait;
         //Methods
 
-        public BasePage(IWebDriver webDriver)
+        public BasePage(IWebDriver webDriver, int waitSeconds = 10)
         {
             this._WebDriver = webDriver;
+            this._Wait = new WebDriverWait(_WebDriver, TimeSpan.FromSeconds(waitSeconds));
         }
 
         public void NavigateTo(string url)
         {
             _WebDriver.Navigate().GoToUrl(url);
         }
-
+        
         public IWebElement FindElementByLocator(By elementLocator)
         {
             IWebElement foundElement = null;
@@ -35,21 +39,9 @@ namespace UITestProject.Tests.Pages
             }
             return foundElement;
         }
-        
-        public void ClickElement(By elementLocator)
+        public IWebElement waitForElement(By webElement, int seconds)
         {
-            FindElementByLocator(elementLocator).Click();   
-        }
-
-        public void SendKeys(By elementLocator, string keys)
-        {
-            FindElementByLocator(elementLocator).SendKeys(keys);   
-        }
-        
-        public IWebElement waitForElement(IWebDriver driver, By webElement, int seconds)
-        {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
-            return wait.Until(e => e.FindElement(webElement));
+            return _Wait.Until(e => e.FindElement(webElement));
         }
     }
 }

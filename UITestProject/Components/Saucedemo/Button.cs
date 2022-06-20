@@ -1,20 +1,19 @@
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace UITestProject.Components.Saucedemo
 {
     public class Button:BaseComponent
     {
-        private IWebElement _webElement;
-        
         public Button(){}
         
-        public Button(IWebDriver webDriver, By locator):base( webDriver, locator)
+        public Button(IWebDriver webDriver, By locator, WebDriverWait explicitWait):base( webDriver, locator, explicitWait)
         {
         }
 
         public void Click()
         {
-            _webDriver.FindElement(byLocator).Click();
+            webDriver.FindElement(byLocator).Click();
         }
     }
 }

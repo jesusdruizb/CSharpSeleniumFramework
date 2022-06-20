@@ -1,27 +1,22 @@
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace UITestProject.Components.Saucedemo
 {
     public class Input: BaseComponent
     {
-        private IWebElement _webElement;
-        public Input(IWebDriver webDriver, By locator):base( webDriver,  locator)
-        {
-            
-        }
+        public Input(IWebDriver webDriver, By locator, WebDriverWait explicitWait):base( webDriver,  locator, explicitWait) {}
 
-        public Input()
-        {
-        }
+        public Input() {}
 
         public void Type(string keyword)
         {
-            _webDriver.FindElement(byLocator).SendKeys(keyword);
+            webDriver.FindElement(byLocator).SendKeys(keyword);
         }
         
         public void Clear()
         {
-            _webDriver.FindElement(byLocator).Clear();
+            webDriver.FindElement(byLocator).Clear();
         }
     }
 }
