@@ -41,7 +41,7 @@ namespace UITestProject.Components
             {
                 element = webDriver.FindElement(byLocator);
             }
-            catch (ElementNotVisibleException e)
+            catch (ElementNotVisibleException)
             {
                 element = explicitWait.Until(ExpectedConditions.ElementIsVisible(byLocator));
             }
