@@ -1,38 +1,31 @@
-using System;
-using System.Collections;
 using OpenQA.Selenium;
-using UITestProject.Components;
 using UITestProject.Components.Saucedemo;
-using UITestProject.Tests.Constants;
+using UITestProject.Tests.Pages;
 
-namespace UITestProject.Tests.Pages.Saucedemo
+namespace UITestProject.Pages.Saucedemo
 {
     public class LoginPage: BasePage
     {
-        //private const string usernameLocator = "[data-test='username']";
-        //private const string passwordLocator = "[data-test='password']";
-        //private const string loginButtonLocator = "[data-test='login-button']";
-        private readonly By usernameInputLocatorBy = By.CssSelector("[data-test='username']");
-        private readonly By passwordInputLocatorBy = By.CssSelector("[data-test='password']");
-        private readonly By loginButtonLocatorBy = By.CssSelector("[data-test='login-button']");
+        private readonly By _usernameInputLocatorBy = By.CssSelector("[data-test='username']");
+        private readonly By _passwordInputLocatorBy = By.CssSelector("[data-test='password']");
+        private readonly By _loginButtonLocatorBy = By.CssSelector("[data-test='login-button']");
 
-        private const string pageUrl = "https://www.saucedemo.com";
-        public Input usernameInput { get; }
-        public Input passwordInput { get; }
-        public Button loginButton { get; }
+        private const string PageUrl = "https://www.saucedemo.com";
+        public Input UsernameInput { get; }
+        public Input PasswordInput { get; }
+        public Button LoginButton { get; }
 
         
-        public LoginPage(IWebDriver webDriver) : base(webDriver)
+        public LoginPage(IWebDriver webDriver, int explicitWaitSeconds = 10) : base(webDriver,explicitWaitSeconds)
         {
-            this.usernameInput = new Input(webDriver, usernameInputLocatorBy);
-            this.passwordInput = new Input(webDriver, passwordInputLocatorBy);
-            this.loginButton = new Button(webDriver, loginButtonLocatorBy);
-
+            this.UsernameInput = new Input(webDriver, _usernameInputLocatorBy, _Wait);
+            this.PasswordInput = new Input(webDriver, _passwordInputLocatorBy, _Wait);
+            this.LoginButton = new Button(webDriver, _loginButtonLocatorBy, _Wait);
         }
 
         public void LoadPage()
         {
-            NavigateTo(pageUrl);
+            NavigateTo(PageUrl);
         }
     }
 }
