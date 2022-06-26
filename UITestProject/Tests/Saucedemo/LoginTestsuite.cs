@@ -8,7 +8,7 @@ namespace UITestProject.Tests.Saucedemo
     public class LoginTestsuite:BaseTestSuite
     {
         [Test]
-        public void InitialTest()
+        public void SauceDemoLoginTest()
         {
             LoginPage loginPage = new LoginPage(WebDriver);
             loginPage.LoadPage();
