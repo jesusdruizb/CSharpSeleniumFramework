@@ -16,11 +16,11 @@ namespace UITestProject.Tests
         public IWebDriver WebDriver { get; set; }
         public string BrowserType { get; set; }
         
-        [SetUp]
+        
         public void ChromeDriverSetup()
         {
-            //new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
-            new DriverManager().SetUpDriver(new ChromeConfig());
+            new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
+            //new DriverManager().SetUpDriver(new ChromeConfig());
             WebDriver = new ChromeDriver();
         }
         /*
@@ -41,7 +41,7 @@ namespace UITestProject.Tests
             }
         }
         */
-        
+        [SetUp]
         public void FirefoxDriverSetup()
         {
             new DriverManager().SetUpDriver(new FirefoxConfig());
