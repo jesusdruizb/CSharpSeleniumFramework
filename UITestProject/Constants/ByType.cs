@@ -1,4 +1,4 @@
-namespace UITestProject.Tests.Constants
+namespace UITestProject.Constants
 {
     public static class ByType
     {
