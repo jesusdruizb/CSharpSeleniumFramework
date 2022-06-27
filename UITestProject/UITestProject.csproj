@@ -109,6 +109,7 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="Data\userCatalog.json" />
+      <Content Include="docker-compose.yml" />
       <Content Include="README.md" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
